@@ -21,6 +21,13 @@ def run_scraper(site,scraper_actor, custom_params=None):
     # Merge default params with custom params
     run_input = scraper_config['params'].copy()
     if custom_params:
+        add_params = {}
+        for key in custom_params:
+            custom_key = scraper_config.get("custom_params_map",{}).get(key)
+            if custom_key:
+                add_params[custom_key] = custom_params[key]
+            else:
+                add_params[key] = custom_params[key]
         run_input.update(custom_params)
 
     # Run the Actor
@@ -50,11 +57,11 @@ def save_to_mongodb(data, site, scraper_actor):
 if __name__ == "__main__":
 
     # Example usage
-    site ="hotels"
-    scraper_actor = "jeremy_frost_hotels_com_scraper"
+    site ="expedia"
+    scraper_actor = "jupri_expedia_hotels"
     custom_params = {
         "limit": 1000,
-        "location": "Spain",
+        "location": "Helsinki",
     }
 
     results = run_scraper(site,scraper_actor, custom_params)

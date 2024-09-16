@@ -58,7 +58,9 @@ ACTOR_DICT={
                 "types": [
                     "hotel"
                 ]
-            }   
+            },
+            "custom_params_map":{
+        }   
         }
     },
 
@@ -70,6 +72,12 @@ ACTOR_DICT={
             "min_stars": "0",
             "place": "Spain"
             }
+        },
+        "custom_params_map":{
+            "limits": "max_depth",
+            "place": "location"
         }
     }
 }
+
+
